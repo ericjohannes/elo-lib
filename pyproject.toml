@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "elo-lib"
+version = "0.1.0"
+description = "Python package for calculating Elo."
+authors = ["eric <eric.j.blom@gmail.com>"]
+readme = "README.md"
+packages = [{include = "elo_lib", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+click = "^8.1.7"
+numpy = "^2.1.3"
+pandas = "^2.2.3"
+flake8-pyproject = "^1.2.3"
+requests = "^2.32.3"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+pre-commit = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+elolib = "elo_lib.cli:cli"
+
+[tool.black]
+line-length = 100
+
+[tool.flake8]
+max-line-length = 100
+
+[tool.isort]
+profile = "black"
