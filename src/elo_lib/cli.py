@@ -88,6 +88,20 @@ def getseason(seasonid, config, output_path):
     default="league.config",
     help="Path to config file containing paths and data about seasons.",
 )
+@click.option("--output-path", help="Path to save new data to.")
+def getallseasons(config, output_path):
+    """Gets all data for all seasons for this league."""
+    league = League(config=config, output_path=output_path)
+    for season in league.seasons:
+        new_file = handle_get_season(season["season_id"], league)
+        print(new_file)
+
+@click.command()
+@click.option(
+    "--config",
+    default="league.config",
+    help="Path to config file containing paths and data about seasons.",
+)
 def cleandata(config):
     """Combaines all data of seasons into clean csv for analysis."""
     league = League(config=config)
@@ -100,4 +114,5 @@ cli.add_command(calculate)
 cli.add_command(projections)
 cli.add_command(chartable)
 cli.add_command(getseason)
+cli.add_command(getallseasons)
 cli.add_command(cleandata)
